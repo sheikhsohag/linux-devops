@@ -1,0 +1,170 @@
+Perfect 👍 You want a complete note on Bash variables — like a cheat sheet with explanations + examples.
+Here you go 🚀
+
+📒 Bash Variables – Full Notes
+🔹 1. What is a Variable in Bash?
+
+A variable is a name that stores a value (string, number, array, etc.).
+
+Bash variables are loosely typed → everything is treated as a string by default.
+
+🔹 2. Rules for Variables
+
+✅ Allowed:
+
+No spaces: name="Alice" ✅
+
+Use letters, numbers, underscore: user_name, age1 ✅
+
+Case sensitive: NAME ≠ name
+
+❌ Not Allowed:
+
+Spaces around =: name = "Alice" ❌
+
+Starting with a number: 1var=10 ❌
+
+🔹 3. Declaring & Using Variables
+name="Alice"
+echo "My name is $name"
+
+
+Use $variable to get value
+
+Use "${variable}" when mixing with text
+
+🔹 4. Types of Variables
+(a) String (default)
+city="Kushtia"
+echo "I live in $city"
+
+(b) Integer
+declare -i age=20
+echo $((age + 5))   # 25
+
+(c) Array (Indexed)
+fruits=("apple" "banana" "mango")
+echo ${fruits[0]}       # apple
+echo ${fruits[@]}       # apple banana mango
+echo ${#fruits[@]}      # 3 (length)
+
+(d) Associative Array (Key-Value)
+declare -A student
+student[name]="Sohag"
+student[age]=25
+echo "${student[name]} is ${student[age]} years old."
+
+(e) Environment Variables
+
+Predefined by system or user.
+
+echo $HOME     # home directory
+echo $PATH     # system PATH
+
+
+Export your own:
+
+export MY_VAR="DevOps"
+
+(f) Readonly Variable
+readonly pi=3.1416
+pi=4   # error: cannot change
+
+(g) Unset Variable
+var="Hello"
+unset var
+echo $var    # empty
+
+🔹 5. Variable Substitution
+
+Default value if empty:
+
+echo ${name:-"Guest"}    # if $name not set → prints "Guest"
+
+
+Assign default if empty:
+
+echo ${name:="Guest"}
+
+🔹 6. Command Substitution
+
+Run command & store output in variable.
+
+today=$(date)
+echo "Today is $today"
+
+🔹 7. Arithmetic with Variables
+a=10
+b=5
+echo $((a + b))   # 15
+echo $((a * b))   # 50
+
+🔹 8. Special Variables
+
+$0 → script name
+
+$1, $2 → first, second argument
+
+$# → number of arguments
+
+$@ → all arguments
+
+$$ → process ID
+
+$? → exit status of last command
+
+Example:
+
+echo "Script name: $0"
+echo "First arg: $1"
+
+🔹 9. Best Practices
+
+✔ Use quotes "${var}" to avoid word splitting
+✔ Use lowercase for local variables, uppercase for env vars
+✔ Use readonly for constants
+
+✅ Summary Table
+
+Type	Example
+String	name="Alice"
+Integer	declare -i age=20
+Array	fruits=("apple" "banana")
+Assoc. Array	declare -A user; user[name]="Sohag"
+Env Var	export PATH=$PATH:/new/path
+Readonly	readonly pi=3.14
+Unset	unset var
+
+
+
+Special variable
+
+
+#!/bin/bash
+
+echo "🔹 Script Name: $0"
+echo "🔹 First Argument: $1"
+echo "🔹 Second Argument: $2"
+echo "🔹 Number of Arguments: $#"
+echo "🔹 All Arguments: $@"
+echo "🔹 Process ID of Script: $$"
+
+# run a sample command
+ls > /dev/null
+echo "🔹 Exit Status of last command: $?"
+
+# example of failed command
+ls non_existing_file > /dev/null
+echo "🔹 Exit Status of failed command: $?"
+
+
+
+
+🔹 Script Name: ./special_vars.sh
+🔹 First Argument: DevOps
+🔹 Second Argument: Linux
+🔹 Number of Arguments: 2
+🔹 All Arguments: DevOps Linux
+🔹 Process ID of Script: 12345
+🔹 Exit Status of last command: 0
+🔹 Exit Status of failed command: 1

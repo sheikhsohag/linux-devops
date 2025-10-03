@@ -1,5 +1,13 @@
 #!/bin/bash
 echo "Hello World"
+echo "Hello World"
+echo -n "same line"
+echo -n "same line 1"
+
+echo "Hello World"
+echo "Hello World"
+echo -n "same line"
+echo -n "same line 1"
 
 
 

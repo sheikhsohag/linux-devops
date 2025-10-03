@@ -1,0 +1,8 @@
+Common operators:
+
+-eq equal to
+-ne not equal
+-gt greater than
+-lt less than
+-ge greater or equal
+-le less or equal
